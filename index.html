@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="public/css/bootstrap.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leader-line/1.0.7/leader-line.min.js"></script>
+    <script src="public/js/popper.js"></script>
+    <script src="public/js/bootstrap.js"></script>
+    <script src="public/js/leaderline.js"></script>
+    <title>arbol de expresion</title>
+    <style>
+    #contenido_arbol {
+        position: relative;
+        min-height: 400px;
+    }
+    .nodo {
+        width: 240px;
+        height: 60px;
+    }
+</style>
+</head>
+<body>
+    <div class="conteiner">
+        <div class="row justify-content-around">
+            <div class="col text-center">
+                <h1 class="text-primary">Arbol de expresiones</h1>
+                <hr>
+            </div>
+            <div class="col-md-4">
+                <label class="mt-2" for="expresion">Ingrese una operación matemática simple</label>
+                <input type="text" class="form-control mt-2" id="expresion">
+                <button id="btn_generar" class="btn btn-primary w-100 mt-2">Generar arbol</button>
+            </div>
+            <div class="col-10">
+                <div id="contenido_arbol" class="row justify-content-around border border-primary" style="height: 300px;">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="public/js/main.js"></script>
+</body>
+</html>
