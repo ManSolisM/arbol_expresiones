@@ -15,26 +15,54 @@
         min-height: 400px;
     }
     .nodo {
-        width: 240px;
+        width: 200px;
         height: 60px;
     }
+    .recorrido {
+        background-color: #f8f9fa;
+        border-left: 4px solid;
+        padding: 10px;
+        margin: 5px 0;
+    }
+    .inorden { border-left-color: #28a745; }
+    .preorden { border-left-color: #007bff; }
+    .postorden { border-left-color: #dc3545; }
 </style>
 </head>
 <body>
-    <div class="conteiner">
+    <div class="container">
         <div class="row justify-content-around">
             <div class="col text-center">
-                <h1 class="text-primary">Arbol de expresiones</h1>
+                <h1 class="text-primary">Árbol de expresiones</h1>
                 <hr>
             </div>
             <div class="col-md-4">
-                <label class="mt-2" for="expresion">Ingrese una operación matemática simple</label>
-                <input type="text" class="form-control mt-2" id="expresion">
-                <button id="btn_generar" class="btn btn-primary w-100 mt-2">Generar arbol</button>
+                <label class="mt-2" for="expresion">Ingrese una operación  </label>
+                <input type="text" class="form-control mt-2" id="expresion" placeholder="Ej: 3+5*2">
+                <button id="btn_generar" class="btn btn-primary w-100 mt-2">Generar árbol</button>
             </div>
             <div class="col-10">
                 <div id="contenido_arbol" class="row justify-content-around border border-primary" style="height: 300px;">
                     
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4" id="seccion-recorridos" style="display: none;">
+            <div class="col-12">
+                <h3 class="text-center">Recorridos del Árbol</h3>
+                <hr>
+                <div class="recorrido inorden">
+                    <strong>Inorden (Izq - Raíz - Der):</strong>
+                    <span id="resultado-inorden">-</span>
+                </div>
+                <div class="recorrido preorden">
+                    <strong>Preorden (Raíz - Izq - Der):</strong>
+                    <span id="resultado-preorden">-</span>
+                </div>
+                <div class="recorrido postorden">
+                    <strong>Postorden (Izq - Der - Raíz):</strong>
+                    <span id="resultado-postorden">-</span>
                 </div>
             </div>
         </div>
