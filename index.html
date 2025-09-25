@@ -10,64 +10,264 @@
     <script src="public/js/leaderline.js"></script>
     <title>arbol de expresion</title>
     <style>
-    #contenido_arbol {
-        position: relative;
-        min-height: 400px;
-    }
-    .nodo {
-        width: 200px;
-        height: 60px;
-    }
-    .recorrido {
-        background-color: #f8f9fa;
-        border-left: 4px solid;
-        padding: 10px;
-        margin: 5px 0;
-    }
-    .inorden { border-left-color: #28a745; }
-    .preorden { border-left-color: #007bff; }
-    .postorden { border-left-color: #dc3545; }
-</style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .main-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            padding: 30px;
+        }
+        
+        .titulo-principal {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .input-section {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(240, 147, 251, 0.3);
+        }
+        
+        .input-section label {
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .form-control {
+            border-radius: 10px;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 12px 18px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        .btn-generar {
+            background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
+            border: none;
+            border-radius: 10px;
+            padding: 12px 25px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: white;
+            box-shadow: 0 8px 20px rgba(79, 172, 254, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-generar:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(79, 172, 254, 0.6);
+            background: linear-gradient(45deg, #00f2fe 0%, #4facfe 100%);
+        }
+        
+        #contenido_arbol {
+            position: relative;
+            min-height: 400px;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 15px;
+            border: 3px solid transparent;
+            background-clip: padding-box;
+            box-shadow: 0 15px 35px rgba(252, 182, 159, 0.3);
+            padding: 20px;
+        }
+        
+        .nodo {
+            width: 200px;
+            height: 60px;
+            background: linear-gradient(45deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(168, 237, 234, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .nodo:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(168, 237, 234, 0.6);
+        }
+        
+        .recorridos-section {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: 0 15px 35px rgba(168, 237, 234, 0.3);
+        }
+        
+        .recorridos-titulo {
+            color: #2d3748;
+            font-weight: 700;
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .recorrido {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            border-left: 6px solid;
+            padding: 18px 25px;
+            margin: 15px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .recorrido:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .inorden { 
+            border-left-color: #48bb78;
+            background: linear-gradient(90deg, rgba(72, 187, 120, 0.1), rgba(255, 255, 255, 0.9));
+        }
+        
+        .preorden { 
+            border-left-color: #4299e1;
+            background: linear-gradient(90deg, rgba(66, 153, 225, 0.1), rgba(255, 255, 255, 0.9));
+        }
+        
+        .postorden { 
+            border-left-color: #f56565;
+            background: linear-gradient(90deg, rgba(245, 101, 101, 0.1), rgba(255, 255, 255, 0.9));
+        }
+        
+        .recorrido strong {
+            font-size: 1.2rem;
+            color: #2d3748;
+        }
+        
+        .recorrido span {
+            font-size: 1.1rem;
+            color: #4a5568;
+            font-weight: 500;
+        }
+        
+        hr {
+            border: none;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
+            margin: 20px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .titulo-principal {
+                font-size: 2rem;
+            }
+            
+            .main-container {
+                margin: 10px;
+                padding: 20px;
+            }
+            
+            .input-section {
+                padding: 20px;
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <div class="row justify-content-around">
-            <div class="col text-center">
-                <h1 class="text-primary">Árbol de expresiones</h1>
-                <hr>
-            </div>
-            <div class="col-md-4">
-                <label class="mt-2" for="expresion">Ingrese una operación  </label>
-                <input type="text" class="form-control mt-2" id="expresion" placeholder="Ej: 3+5*2">
-                <button id="btn_generar" class="btn btn-primary w-100 mt-2">Generar árbol</button>
-            </div>
-            <div class="col-10">
-                <div id="contenido_arbol" class="row justify-content-around border border-primary" style="height: 300px;">
-                    
+        <div class="main-container fade-in">
+            <h1 class="titulo-principal pulse">Árbol de Expresiones</h1>
+            
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="input-section">
+                        <label for="expresion"> Ingrese una operación matemática</label>
+                        <input type="text" class="form-control mt-3" id="expresion" placeholder="Ejemplo: 3+5*2 o (4+2)*3">
+                        <button id="btn_generar" class="btn btn-generar w-100 mt-3">
+                             Generar Árbol
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="row mt-4" id="seccion-recorridos" style="display: none;">
-            <div class="col-12">
-                <h3 class="text-center">Recorridos del Árbol</h3>
-                <hr>
-                <div class="recorrido inorden">
-                    <strong>Inorden :</strong>
-                    <span id="resultado-inorden">-</span>
+            
+            <div class="row">
+                <div class="col-12">
+                    <div id="contenido_arbol" class="fade-in">
+                        <div class="text-center text-muted p-5">
+                            <h4> Ingresa una expresión matemática para visualizar su árbol</h4>
+                            <p>El árbol de expresiones te ayudará a entender la jerarquía de operaciones</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="recorrido preorden">
-                    <strong>Preorden :</strong>
-                    <span id="resultado-preorden">-</span>
-                </div>
-                <div class="recorrido postorden">
-                    <strong>Postorden :</strong>
-                    <span id="resultado-postorden">-</span>
+            </div>
+            
+            <div id="seccion-recorridos" style="display: none;">
+                <div class="recorridos-section fade-in">
+                    <h3 class="recorridos-titulo">Recorridos del Árbol</h3>
+                    <hr>
+                    <div class="recorrido inorden">
+                        <strong>🟢 Inorden (Izquierda-Raíz-Derecha):</strong>
+                        <span id="resultado-inorden">-</span>
+                    </div>
+                    <div class="recorrido preorden">
+                        <strong>🔵 Preorden (Raíz-Izquierda-Derecha):</strong>
+                        <span id="resultado-preorden">-</span>
+                    </div>
+                    <div class="recorrido postorden">
+                        <strong>🔴 Postorden (Izquierda-Derecha-Raíz):</strong>
+                        <span id="resultado-postorden">-</span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
     <script src="public/js/main.js"></script>
 </body>
 </html>
